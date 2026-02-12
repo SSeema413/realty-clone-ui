@@ -1,4 +1,6 @@
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
+import { categorySlugMap } from "@/data/mockListings";
 
 const categories = [
   { label: "New Listings", count: "28,450", image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600&q=80" },
@@ -36,8 +38,8 @@ const BrowseHomes = () => {
           className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"
         >
           {categories.map((cat) => (
+            <Link key={cat.label} to={`/listings/${categorySlugMap[cat.label]}`}>
             <motion.div
-              key={cat.label}
               variants={item}
               whileHover={{ scale: 1.03 }}
               className="relative rounded-xl overflow-hidden cursor-pointer group h-48"
@@ -56,6 +58,7 @@ const BrowseHomes = () => {
                 </span>
               </div>
             </motion.div>
+            </Link>
           ))}
         </motion.div>
       </div>
